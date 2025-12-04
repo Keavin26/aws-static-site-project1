@@ -1,0 +1,202 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Project 1 \'96 AWS S3 + CloudFront | Keavin Good</title>\
+\
+    <!-- Google Font -->\
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">\
+\
+    <style>\
+        body \{\
+            margin: 0;\
+            padding: 0;\
+            background-color: #0d1117;\
+            font-family: 'Poppins', sans-serif;\
+            color: #e6edf3;\
+        \}\
+\
+        header \{\
+            text-align: center;\
+            padding: 50px 20px;\
+            background: linear-gradient(90deg, #0d1117, #1f2937);\
+            border-bottom: 1px solid #30363d;\
+        \}\
+\
+        h1 \{\
+            font-size: 42px;\
+            margin-bottom: 10px;\
+            font-weight: 700;\
+            color: #58a6ff;\
+        \}\
+\
+        h2 \{\
+            color: #58a6ff;\
+            font-weight: 600;\
+            margin-top: 40px;\
+        \}\
+\
+        p \{\
+            line-height: 1.7;\
+        \}\
+\
+        .subtitle \{\
+            color: #a0aec0;\
+            font-size: 18px;\
+            margin-bottom: 5px;\
+        \}\
+\
+        .contact \{\
+            margin-top: 5px;\
+            color: #9ca3af;\
+        \}\
+\
+        .container \{\
+            width: 90%;\
+            max-width: 900px;\
+            margin: 0 auto;\
+            padding: 40px 20px;\
+        \}\
+\
+        code, pre \{\
+            display: block;\
+            background-color: #161b22;\
+            border: 1px solid #30363d;\
+            padding: 15px;\
+            border-radius: 8px;\
+            color: #e6edf3;\
+            overflow-x: auto;\
+        \}\
+\
+        .section-box \{\
+            padding: 20px;\
+            background-color: #161b22;\
+            border-radius: 10px;\
+            margin-top: 20px;\
+            border: 1px solid #30363d;\
+        \}\
+\
+        a \{\
+            color: #58a6ff;\
+            text-decoration: none;\
+        \}\
+\
+        a:hover \{\
+            text-decoration: underline;\
+        \}\
+\
+        footer \{\
+            text-align: center;\
+            padding: 25px;\
+            margin-top: 50px;\
+            color: #6b7280;\
+            font-size: 14px;\
+            border-top: 1px solid #30363d;\
+        \}\
+    </style>\
+</head>\
+\
+<body>\
+\
+<header>\
+    <h1>Keavin Maurice Good</h1>\
+    <div class="subtitle">Cloud & Cybersecurity Engineer</div>\
+    <div class="contact">\uc0\u55357 \u56551  keavingood26@gmail.com</div>\
+</header>\
+\
+<div class="container">\
+\
+    <h2>\uc0\u55357 \u56960  Project 1: AWS S3 + CloudFront Static Website (with OAC)</h2>\
+\
+    <div class="section-box">\
+        <p>This project demonstrates how I deployed a fully serverless, globally distributed static website using \
+        <strong>Amazon S3</strong> and <strong>Amazon CloudFront</strong>, secured end-to-end with \
+        <strong>Origin Access Control (OAC)</strong>. The site is hosted behind CloudFront, and the S3 bucket remains \
+        fully private.</p>\
+\
+        <p>Live CloudFront URL:</p>\
+        <p><a href="https://d1i9ym73iw6wio.cloudfront.net" target="_blank">\
+            https://d1i9ym73iw6wio.cloudfront.net\
+        </a></p>\
+    </div>\
+\
+    <h2>\uc0\u55358 \u56809  Architecture Diagram</h2>\
+    <div class="section-box">\
+        <p><em>(Insert your architecture diagram image here once uploaded to GitHub)</em></p>\
+        <p>S3 Bucket \uc0\u8594  CloudFront Distribution \u8594  Global Edge Network \u8594  User</p>\
+    </div>\
+\
+    <h2>\uc0\u55356 \u57303 \u65039  Services Used</h2>\
+    <div class="section-box">\
+        <ul>\
+            <li>Amazon S3 \'96 static website storage</li>\
+            <li>Amazon CloudFront \'96 CDN with HTTPS</li>\
+            <li>OAC (Origin Access Control) \'96 secure bucket access</li>\
+            <li>S3 Bucket Policies \'96 access enforcement</li>\
+            <li>CloudFront Invalidations \'96 cache refresh</li>\
+        </ul>\
+    </div>\
+\
+    <h2>\uc0\u55357 \u56550  Final S3 Bucket Policy</h2>\
+    <div class="section-box">\
+        <pre><code>\{\
+"Version": "2008-10-17",\
+"Id": "PolicyForCloudFrontPrivateContent",\
+"Statement": [\
+\{\
+"Sid": "AllowCloudFrontServicePrincipal",\
+"Effect": "Allow",\
+"Principal": \{\
+"Service": "cloudfront.amazonaws.com"\
+\},\
+"Action": "s3:GetObject",\
+"Resource": "arn:aws:s3:::keavingood-project1-static-site/*",\
+"Condition": \{\
+"StringEquals": \{\
+"AWS:SourceArn": "arn:aws:cloudfront::408585017687:distribution/E28O8ONB8WFU7"\
+\}\
+\}\
+\}\
+]\
+\}</code></pre>\
+    </div>\
+\
+    <h2>\uc0\u55357 \u56613  Key Learnings</h2>\
+    <div class="section-box">\
+        <ul>\
+            <li>Built secure S3-hosted sites using CloudFront with full OAC implementation</li>\
+            <li>Blocked public access, using CloudFront as the only permitted access layer</li>\
+            <li>Configured CloudFront behaviors, HTTPS redirection, and caching</li>\
+            <li>Performed cache invalidation for global consistency</li>\
+            <li>Debugged legacy CloudFront configurations and migrated to OAC-compliant setup</li>\
+        </ul>\
+    </div>\
+\
+    <h2>\uc0\u55357 \u56508  Resume Bullet Points</h2>\
+    <div class="section-box">\
+        <ul>\
+            <li>Designed and deployed a secure static website using Amazon S3 + CloudFront.</li>\
+            <li>Implemented Origin Access Control (OAC) to restrict S3 access to CloudFront only.</li>\
+            <li>Developed global CDN distribution with HTTPS enforcement and optimized caching.</li>\
+            <li>Configured IAM bucket policies tied to CloudFront distribution ARNs.</li>\
+            <li>Executed CloudFront invalidations to maintain worldwide content freshness.</li>\
+        </ul>\
+    </div>\
+\
+</div>\
+\
+<footer>\
+    \'a9 2025 Keavin Maurice Good \'97 Cloud & Cybersecurity Engineer\
+</footer>\
+\
+</body>\
+</html>\
+}
